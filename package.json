@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "npx prisma generate --schema=prisma/admin.prisma && npx prisma generate --schema=prisma/square.prisma && npx prisma generate --schema=prisma/quote.prisma && npx prisma generate --schema=prisma/wishlist.prisma"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.0",
