@@ -15,13 +15,15 @@ export function middleware(request: NextRequest) {
   }
 
   // Protect /api/admin routes
-  if (pathname.startsWith('/api/admin') && pathname !== '/api/admin/login') {
+  if (
+    pathname.startsWith('/api/admin') &&
+    pathname !== '/api/admin/login' &&
+    pathname !== '/api/admin/sync'  // ← allow Vercel cron
+  ) {
     const adminSecret = process.env.ADMIN_SECRET;
     
-    // Check for cookie (for browser requests)
     const cookieToken = request.cookies.get('admin_token')?.value;
     
-    // Check for headers (for direct API calls)
     const authHeader = request.headers.get('authorization');
     const headerToken = authHeader?.startsWith('Bearer ') 
       ? authHeader.substring(7) 
