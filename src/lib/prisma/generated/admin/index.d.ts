@@ -825,18 +825,21 @@ export namespace Prisma {
     id: string | null
     email: string | null
     lastSyncedAt: Date | null
+    earliestJoinedAt: Date | null
   }
 
   export type AdminUserViewMaxAggregateOutputType = {
     id: string | null
     email: string | null
     lastSyncedAt: Date | null
+    earliestJoinedAt: Date | null
   }
 
   export type AdminUserViewCountAggregateOutputType = {
     id: number
     email: number
     lastSyncedAt: number
+    earliestJoinedAt: number
     squareDonationsUsers: number
     quotePluginUsers: number
     wishlistFlowUsers: number
@@ -850,18 +853,21 @@ export namespace Prisma {
     id?: true
     email?: true
     lastSyncedAt?: true
+    earliestJoinedAt?: true
   }
 
   export type AdminUserViewMaxAggregateInputType = {
     id?: true
     email?: true
     lastSyncedAt?: true
+    earliestJoinedAt?: true
   }
 
   export type AdminUserViewCountAggregateInputType = {
     id?: true
     email?: true
     lastSyncedAt?: true
+    earliestJoinedAt?: true
     squareDonationsUsers?: true
     quotePluginUsers?: true
     wishlistFlowUsers?: true
@@ -946,6 +952,7 @@ export namespace Prisma {
     id: string
     email: string
     lastSyncedAt: Date
+    earliestJoinedAt: Date
     squareDonationsUsers: JsonValue
     quotePluginUsers: JsonValue
     wishlistFlowUsers: JsonValue
@@ -974,6 +981,7 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     lastSyncedAt?: boolean
+    earliestJoinedAt?: boolean
     squareDonationsUsers?: boolean
     quotePluginUsers?: boolean
     wishlistFlowUsers?: boolean
@@ -987,6 +995,7 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     lastSyncedAt?: boolean
+    earliestJoinedAt?: boolean
     squareDonationsUsers?: boolean
     quotePluginUsers?: boolean
     wishlistFlowUsers?: boolean
@@ -994,7 +1003,7 @@ export namespace Prisma {
     mailerLiteSyncedGroups?: boolean
   }
 
-  export type AdminUserViewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "lastSyncedAt" | "squareDonationsUsers" | "quotePluginUsers" | "wishlistFlowUsers" | "summary" | "mailerLiteSyncedGroups", ExtArgs["result"]["adminUserView"]>
+  export type AdminUserViewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "lastSyncedAt" | "earliestJoinedAt" | "squareDonationsUsers" | "quotePluginUsers" | "wishlistFlowUsers" | "summary" | "mailerLiteSyncedGroups", ExtArgs["result"]["adminUserView"]>
 
   export type $AdminUserViewPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AdminUserView"
@@ -1003,6 +1012,7 @@ export namespace Prisma {
       id: string
       email: string
       lastSyncedAt: Date
+      earliestJoinedAt: Date
       squareDonationsUsers: Prisma.JsonValue
       quotePluginUsers: Prisma.JsonValue
       wishlistFlowUsers: Prisma.JsonValue
@@ -1403,6 +1413,7 @@ export namespace Prisma {
     readonly id: FieldRef<"AdminUserView", 'String'>
     readonly email: FieldRef<"AdminUserView", 'String'>
     readonly lastSyncedAt: FieldRef<"AdminUserView", 'DateTime'>
+    readonly earliestJoinedAt: FieldRef<"AdminUserView", 'DateTime'>
     readonly squareDonationsUsers: FieldRef<"AdminUserView", 'Json'>
     readonly quotePluginUsers: FieldRef<"AdminUserView", 'Json'>
     readonly wishlistFlowUsers: FieldRef<"AdminUserView", 'Json'>
@@ -1764,6 +1775,7 @@ export namespace Prisma {
     id: 'id',
     email: 'email',
     lastSyncedAt: 'lastSyncedAt',
+    earliestJoinedAt: 'earliestJoinedAt',
     squareDonationsUsers: 'squareDonationsUsers',
     quotePluginUsers: 'quotePluginUsers',
     wishlistFlowUsers: 'wishlistFlowUsers',
@@ -1854,6 +1866,7 @@ export namespace Prisma {
     id?: StringFilter<"AdminUserView"> | string
     email?: StringFilter<"AdminUserView"> | string
     lastSyncedAt?: DateTimeFilter<"AdminUserView"> | Date | string
+    earliestJoinedAt?: DateTimeFilter<"AdminUserView"> | Date | string
     squareDonationsUsers?: JsonFilter<"AdminUserView">
     quotePluginUsers?: JsonFilter<"AdminUserView">
     wishlistFlowUsers?: JsonFilter<"AdminUserView">
@@ -1865,6 +1878,7 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     lastSyncedAt?: SortOrder
+    earliestJoinedAt?: SortOrder
     squareDonationsUsers?: SortOrder
     quotePluginUsers?: SortOrder
     wishlistFlowUsers?: SortOrder
@@ -1879,6 +1893,7 @@ export namespace Prisma {
     OR?: AdminUserViewWhereInput[]
     NOT?: AdminUserViewWhereInput | AdminUserViewWhereInput[]
     lastSyncedAt?: DateTimeFilter<"AdminUserView"> | Date | string
+    earliestJoinedAt?: DateTimeFilter<"AdminUserView"> | Date | string
     squareDonationsUsers?: JsonFilter<"AdminUserView">
     quotePluginUsers?: JsonFilter<"AdminUserView">
     wishlistFlowUsers?: JsonFilter<"AdminUserView">
@@ -1890,6 +1905,7 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     lastSyncedAt?: SortOrder
+    earliestJoinedAt?: SortOrder
     squareDonationsUsers?: SortOrder
     quotePluginUsers?: SortOrder
     wishlistFlowUsers?: SortOrder
@@ -1907,6 +1923,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"AdminUserView"> | string
     email?: StringWithAggregatesFilter<"AdminUserView"> | string
     lastSyncedAt?: DateTimeWithAggregatesFilter<"AdminUserView"> | Date | string
+    earliestJoinedAt?: DateTimeWithAggregatesFilter<"AdminUserView"> | Date | string
     squareDonationsUsers?: JsonWithAggregatesFilter<"AdminUserView">
     quotePluginUsers?: JsonWithAggregatesFilter<"AdminUserView">
     wishlistFlowUsers?: JsonWithAggregatesFilter<"AdminUserView">
@@ -1918,6 +1935,7 @@ export namespace Prisma {
     id?: string
     email: string
     lastSyncedAt?: Date | string
+    earliestJoinedAt?: Date | string
     squareDonationsUsers: InputJsonValue
     quotePluginUsers: InputJsonValue
     wishlistFlowUsers: InputJsonValue
@@ -1929,6 +1947,7 @@ export namespace Prisma {
     id?: string
     email: string
     lastSyncedAt?: Date | string
+    earliestJoinedAt?: Date | string
     squareDonationsUsers: InputJsonValue
     quotePluginUsers: InputJsonValue
     wishlistFlowUsers: InputJsonValue
@@ -1939,6 +1958,7 @@ export namespace Prisma {
   export type AdminUserViewUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
     lastSyncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    earliestJoinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     squareDonationsUsers?: InputJsonValue | InputJsonValue
     quotePluginUsers?: InputJsonValue | InputJsonValue
     wishlistFlowUsers?: InputJsonValue | InputJsonValue
@@ -1949,6 +1969,7 @@ export namespace Prisma {
   export type AdminUserViewUncheckedUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
     lastSyncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    earliestJoinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     squareDonationsUsers?: InputJsonValue | InputJsonValue
     quotePluginUsers?: InputJsonValue | InputJsonValue
     wishlistFlowUsers?: InputJsonValue | InputJsonValue
@@ -1960,6 +1981,7 @@ export namespace Prisma {
     id?: string
     email: string
     lastSyncedAt?: Date | string
+    earliestJoinedAt?: Date | string
     squareDonationsUsers: InputJsonValue
     quotePluginUsers: InputJsonValue
     wishlistFlowUsers: InputJsonValue
@@ -1970,6 +1992,7 @@ export namespace Prisma {
   export type AdminUserViewUpdateManyMutationInput = {
     email?: StringFieldUpdateOperationsInput | string
     lastSyncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    earliestJoinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     squareDonationsUsers?: InputJsonValue | InputJsonValue
     quotePluginUsers?: InputJsonValue | InputJsonValue
     wishlistFlowUsers?: InputJsonValue | InputJsonValue
@@ -1980,6 +2003,7 @@ export namespace Prisma {
   export type AdminUserViewUncheckedUpdateManyInput = {
     email?: StringFieldUpdateOperationsInput | string
     lastSyncedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    earliestJoinedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     squareDonationsUsers?: InputJsonValue | InputJsonValue
     quotePluginUsers?: InputJsonValue | InputJsonValue
     wishlistFlowUsers?: InputJsonValue | InputJsonValue
@@ -2036,6 +2060,7 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     lastSyncedAt?: SortOrder
+    earliestJoinedAt?: SortOrder
     squareDonationsUsers?: SortOrder
     quotePluginUsers?: SortOrder
     wishlistFlowUsers?: SortOrder
@@ -2047,12 +2072,14 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     lastSyncedAt?: SortOrder
+    earliestJoinedAt?: SortOrder
   }
 
   export type AdminUserViewMinOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     lastSyncedAt?: SortOrder
+    earliestJoinedAt?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {

@@ -118,6 +118,7 @@ exports.Prisma.AdminUserViewScalarFieldEnum = {
   id: 'id',
   email: 'email',
   lastSyncedAt: 'lastSyncedAt',
+  earliestJoinedAt: 'earliestJoinedAt',
   squareDonationsUsers: 'squareDonationsUsers',
   quotePluginUsers: 'quotePluginUsers',
   wishlistFlowUsers: 'wishlistFlowUsers',

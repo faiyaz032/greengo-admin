@@ -167,6 +167,7 @@ export async function performAggregationSync() {
         create: {
           email,
           lastSyncedAt: new Date(),
+          earliestJoinedAt,
           squareDonationsUsers,
           quotePluginUsers,
           wishlistFlowUsers,
@@ -175,6 +176,7 @@ export async function performAggregationSync() {
         },
         update: {
           lastSyncedAt: new Date(),
+          earliestJoinedAt,
           squareDonationsUsers,
           quotePluginUsers,
           wishlistFlowUsers,

@@ -90,6 +90,7 @@ exports.Prisma.AdminUserViewScalarFieldEnum = {
   id: 'id',
   email: 'email',
   lastSyncedAt: 'lastSyncedAt',
+  earliestJoinedAt: 'earliestJoinedAt',
   squareDonationsUsers: 'squareDonationsUsers',
   quotePluginUsers: 'quotePluginUsers',
   wishlistFlowUsers: 'wishlistFlowUsers',
@@ -159,13 +160,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/lib/prisma/generated/admin\"\n}\n\ndatasource db {\n  provider = \"mongodb\"\n  url      = env(\"ADMIN_DB_URL\")\n}\n\nmodel AdminUserView {\n  id           String   @id @default(auto()) @map(\"_id\") @db.ObjectId\n  email        String   @unique\n  lastSyncedAt DateTime @default(now())\n\n  squareDonationsUsers   Json\n  quotePluginUsers       Json\n  wishlistFlowUsers      Json\n  summary                Json\n  mailerLiteSyncedGroups String[]\n\n  @@map(\"admin_user_view\")\n}\n",
-  "inlineSchemaHash": "1b15f14b185a6ff2e73d3bbcbbe6f75d2815900891c904d8ec2a6081a4a02339",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/lib/prisma/generated/admin\"\n}\n\ndatasource db {\n  provider = \"mongodb\"\n  url      = env(\"ADMIN_DB_URL\")\n}\n\nmodel AdminUserView {\n  id               String   @id @default(auto()) @map(\"_id\") @db.ObjectId\n  email            String   @unique\n  lastSyncedAt     DateTime @default(now())\n  earliestJoinedAt DateTime @default(now())\n\n  squareDonationsUsers   Json\n  quotePluginUsers       Json\n  wishlistFlowUsers      Json\n  summary                Json\n  mailerLiteSyncedGroups String[]\n\n  @@map(\"admin_user_view\")\n}\n",
+  "inlineSchemaHash": "cc1389ea118fa749754bdc52768167644b49d0104907ee6911dc3a14338d487b",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"AdminUserView\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"_id\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lastSyncedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"squareDonationsUsers\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"quotePluginUsers\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"wishlistFlowUsers\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"summary\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"mailerLiteSyncedGroups\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":\"admin_user_view\"}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"AdminUserView\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"_id\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lastSyncedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"earliestJoinedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"squareDonationsUsers\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"quotePluginUsers\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"wishlistFlowUsers\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"summary\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"mailerLiteSyncedGroups\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":\"admin_user_view\"}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

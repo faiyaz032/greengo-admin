@@ -36,7 +36,7 @@ export async function GET(request: Request) {
         },
         skip,
         take: limit,
-        orderBy: { lastSyncedAt: 'desc' },
+        orderBy: { earliestJoinedAt: 'desc' },
       }),
       prismaAdmin.adminUserView.count({ where }),
     ]);

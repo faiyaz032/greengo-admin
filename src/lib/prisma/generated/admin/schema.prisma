@@ -9,9 +9,10 @@ datasource db {
 }
 
 model AdminUserView {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  email        String   @unique
-  lastSyncedAt DateTime @default(now())
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  email            String   @unique
+  lastSyncedAt     DateTime @default(now())
+  earliestJoinedAt DateTime @default(now())
 
   squareDonationsUsers   Json
   quotePluginUsers       Json
