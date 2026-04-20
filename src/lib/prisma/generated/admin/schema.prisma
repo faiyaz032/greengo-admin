@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/lib/prisma/generated/admin"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("ADMIN_DB_URL")
+}
+
+model AdminUserView {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  email        String   @unique
+  lastSyncedAt DateTime @default(now())
+
+  squareDonationsUsers   Json
+  quotePluginUsers       Json
+  wishlistFlowUsers      Json
+  summary                Json
+  mailerLiteSyncedGroups String[]
+
+  @@map("admin_user_view")
+}

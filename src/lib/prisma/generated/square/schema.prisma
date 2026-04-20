@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/lib/prisma/generated/square"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("SQUARE_DONATIONS_URL")
+}
+
+model User {
+  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  clerkUserId        String?
+  firstName          String?
+  lastName           String?
+  email              String    @unique
+  role               String
+  subscribedPlan     String?   @db.ObjectId
+  isEmailVerified    Boolean?
+  isWebsiteConnected Boolean?
+  hasCampaign        Boolean?
+  hasWebsite         Boolean?
+  stripeAccountId    String?
+  stripeCustomerId   String?
+  isOldUser          Boolean?
+  createdAt          DateTime? @default(now())
+  updatedAt          DateTime? @updatedAt
+  websites           Website[]
+
+  @@map("users")
+}
+
+model Website {
+  id                      String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId                  String    @map("user") @db.ObjectId
+  user                    User      @relation(fields: [userId], references: [id])
+  name                    String
+  domain                  String
+  platform                String?
+  hasCampaign             Boolean?
+  stripeAccountId         String?
+  stripeCustomerId        String?
+  isActive                Boolean?
+  launchPadCompletedSteps Int?
+  isLaunchpadCompleted    Boolean?
+  websiteLogo             String?
+  primaryColor            String?
+  secondaryColor          String?
+  purchasedAddons         Json?
+  isMailchimpConnected    Boolean?
+  mailchimpListIds        String[]
+  fromEmail               String?
+  replyTo                 String?
+  notificationDomain      String?
+  dnsStatus               Boolean?
+  isScriptConfigured      Boolean?
+  createdAt               DateTime? @default(now())
+  updatedAt               DateTime? @updatedAt
+
+  @@map("websites")
+}
