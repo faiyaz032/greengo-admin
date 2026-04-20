@@ -1,6 +1,3 @@
 export async function register() {
-  if (process.env.NEXT_RUNTIME === 'nodejs') {
-    const { initCronJob } = await import('./lib/sync/cronJob');
-    initCronJob();
-  }
+  // node-cron not supported on Vercel — using vercel.json cron instead
 }
