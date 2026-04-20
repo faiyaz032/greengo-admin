@@ -1,11 +1,11 @@
 import { performAggregationSync } from '@/lib/sync/aggregationSync';
 
-export async function GET() {
+export async function POST() {
   try {
-    await performAggregationSync();
-    return Response.json({ success: true });
+    const result = await performAggregationSync();
+    return Response.json(result);
   } catch (error) {
-    console.error('[Cron] Sync error:', error);
+    console.error('[Sync] Error:', error);
     return Response.json({ error: 'Sync failed' }, { status: 500 });
   }
 }

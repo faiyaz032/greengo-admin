@@ -17,8 +17,7 @@ export function middleware(request: NextRequest) {
   // Protect /api/admin routes
   if (
     pathname.startsWith('/api/admin') &&
-    pathname !== '/api/admin/login' &&
-    pathname !== '/api/admin/sync'  // ← allow Vercel cron
+    pathname !== '/api/admin/login'
   ) {
     const adminSecret = process.env.ADMIN_SECRET;
     
