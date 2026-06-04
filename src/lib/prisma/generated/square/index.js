@@ -159,7 +159,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/faiyaz/workspace/greengo-admin/src/lib/prisma/generated/square",
+      "value": "/home/tarnished/workspace/greengo-admin/src/lib/prisma/generated/square",
       "fromEnvVar": null
     },
     "config": {
@@ -173,11 +173,11 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/faiyaz/workspace/greengo-admin/prisma/square.prisma",
+    "sourceFilePath": "/home/tarnished/workspace/greengo-admin/prisma/square.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../../../.env"
   },
   "relativePath": "../../../../../prisma",

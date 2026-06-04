@@ -126,6 +126,15 @@ exports.Prisma.AdminUserViewScalarFieldEnum = {
   mailerLiteSyncedGroups: 'mailerLiteSyncedGroups'
 };
 
+exports.Prisma.ContactMessageScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  message: 'message',
+  source: 'source',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -138,7 +147,8 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
-  AdminUserView: 'AdminUserView'
+  AdminUserView: 'AdminUserView',
+  ContactMessage: 'ContactMessage'
 };
 
 /**
