@@ -1,10 +1,11 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
 import { UserTable } from '@/components/admin/UserTable';
 import { SyncButton } from '@/components/admin/SyncButton';
 import { Input } from '@/components/ui/input';
-import { Search, Users, LayoutGrid, TrendingUp } from 'lucide-react';
+import { Search, Users, LayoutGrid, TrendingUp, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
@@ -55,7 +56,15 @@ export default function AdminPage() {
               <p className="text-xs text-slate-500">Aggregated SaaS dashboard</p>
             </div>
           </div>
-          <SyncButton onComplete={fetchUsers} />
+          <div className="flex items-center gap-3">
+            <Link href="/admin/contacts">
+              <Button variant="outline" className="border-slate-200 shadow-sm text-slate-700 hover:text-slate-900 gap-2">
+                <MessageSquare className="h-4 w-4" />
+                Contact Messages
+              </Button>
+            </Link>
+            <SyncButton onComplete={fetchUsers} />
+          </div>
         </div>
       </div>
 
