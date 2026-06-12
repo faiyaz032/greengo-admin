@@ -1,8 +1,41 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+const ALLOWED_ORIGINS = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'https://wishlistflow.com',
+  'https://www.quoteplugin.com',
+  'https://upsellgrow.com',
+];
+
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const origin = request.headers.get('origin') || '';
+
+  // Handle CORS for public contact API
+  if (pathname === '/api/contact') {
+    const isAllowed = ALLOWED_ORIGINS.includes(origin);
+
+    if (request.method === 'OPTIONS') {
+      const response = new NextResponse(null, { status: 204 });
+      if (isAllowed) {
+        response.headers.set('Access-Control-Allow-Origin', origin);
+        response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+        response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        response.headers.set('Access-Control-Max-Age', '86400');
+      }
+      return response;
+    }
+
+    const response = NextResponse.next();
+    if (isAllowed) {
+      response.headers.set('Access-Control-Allow-Origin', origin);
+      response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+      response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    }
+    return response;
+  }
 
   // Protect /admin routes (except /admin/login)
   if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
@@ -39,5 +72,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/api/admin/:path*'],
+  matcher: ['/admin/:path*', '/api/admin/:path*', '/api/contact'],
 };
