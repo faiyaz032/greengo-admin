@@ -132,6 +132,7 @@ exports.Prisma.ContactMessageScalarFieldEnum = {
   email: 'email',
   message: 'message',
   source: 'source',
+  requestType: 'requestType',
   createdAt: 'createdAt'
 };
 

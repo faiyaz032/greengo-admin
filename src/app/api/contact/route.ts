@@ -5,7 +5,17 @@ import { sendContactEmail } from '@/lib/services/mail';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, message, source } = body;
+    const { name, email, message, source, requestType } = body;
+
+    // Allowed request/ticket types
+    const REQUEST_TYPES = [
+      'Installation Help',
+      'Not Working as Expected',
+      'Pre-Purchase question',
+      'Feature Clarification',
+      'Billing & Refunds',
+      'Other',
+    ];
 
     // Simple validation
     if (!name || typeof name !== 'string' || !name.trim()) {
@@ -20,11 +30,15 @@ export async function POST(request: Request) {
     if (!source || typeof source !== 'string' || !source.trim()) {
       return NextResponse.json({ error: 'Source is required' }, { status: 400 });
     }
+    if (requestType !== undefined && requestType !== null && requestType !== '' && !REQUEST_TYPES.includes(requestType)) {
+      return NextResponse.json({ error: 'Invalid request type' }, { status: 400 });
+    }
 
     const trimmedName = name.trim();
     const trimmedEmail = email.trim().toLowerCase();
     const trimmedMessage = message.trim();
     const trimmedSource = source.trim();
+    const resolvedRequestType = REQUEST_TYPES.includes(requestType) ? requestType : 'Other';
 
     // 1. Save to Database
     const savedMessage = await prismaAdmin.contactMessage.create({
@@ -33,6 +47,7 @@ export async function POST(request: Request) {
         email: trimmedEmail,
         message: trimmedMessage,
         source: trimmedSource,
+        requestType: resolvedRequestType,
       },
     });
 
@@ -42,6 +57,7 @@ export async function POST(request: Request) {
       email: trimmedEmail,
       message: trimmedMessage,
       source: trimmedSource,
+      requestType: resolvedRequestType,
     });
 
     return NextResponse.json({

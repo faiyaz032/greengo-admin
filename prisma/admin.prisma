@@ -24,12 +24,13 @@ model AdminUserView {
 }
 
 model ContactMessage {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  email     String
-  message   String
-  source    String   // e.g. "quoteplugin", "wishlist", etc.
-  createdAt DateTime @default(now())
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  email       String
+  message     String
+  source      String   // e.g. "quoteplugin", "wishlist", etc.
+  requestType String?  // e.g. "Installation Help", "Billing & Refunds", etc.
+  createdAt   DateTime @default(now())
 
   @@map("contact_messages")
 }

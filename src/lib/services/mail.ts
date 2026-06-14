@@ -15,49 +15,55 @@ interface SendContactMailParams {
   email: string;
   message: string;
   source: string;
+  requestType?: string;
 }
 
-export async function sendContactEmail({ name, email, message, source }: SendContactMailParams) {
+export async function sendContactEmail({ name, email, message, source, requestType }: SendContactMailParams) {
   const fromEmail = process.env.FROM_EMAIL || 'noreply@wishlistflow.com';
   const toEmail = 'waqas@sqspstarter.com';
 
   const mailOptions = {
-    from: `"GreenGo Contact Form" <${fromEmail}>`,
+    from: `"SQSP Support Ticket" <${fromEmail}>`,
     to: toEmail,
     replyTo: email,
-    subject: `New Contact Message from [${source}]`,
+    subject: `New Support Ticket${requestType ? ` [${requestType}]` : ''} from [${source}]`,
     text: `You have received a new contact message.
 
 Name: ${name}
 Email: ${email}
 Source: ${source}
+Request Type: ${requestType || 'Other'}
 
 Message:
 ${message}
 `,
     html: `
-      <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
-        <h2 style="color: #4f46e5; margin-top: 0;">New Contact Message</h2>
-        <p style="margin-bottom: 20px; color: #475569;">Received a new contact form submission via <strong>${source}</strong>.</p>
-        
+      <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e5e5; border-radius: 8px; background-color: #ffffff;">
+        <h2 style="color: #333333; margin-top: 0;">New Contact Message</h2>
+        <p style="margin-bottom: 20px; color: #666666;">Received a new contact form submission via <strong>${source}</strong>.</p>
+
         <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
           <tr>
-            <td style="padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-weight: bold; color: #334155; width: 100px;">Name:</td>
-            <td style="padding: 8px 0; border-bottom: 1px solid #f1f5f9; color: #475569;">${name}</td>
+            <td style="padding: 8px 0; border-bottom: 1px solid #eeeeee; font-weight: bold; color: #333333; width: 100px;">Name:</td>
+            <td style="padding: 8px 0; border-bottom: 1px solid #eeeeee; color: #666666;">${name}</td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-weight: bold; color: #334155;">Email:</td>
-            <td style="padding: 8px 0; border-bottom: 1px solid #f1f5f9; color: #475569;"><a href="mailto:${email}">${email}</a></td>
+            <td style="padding: 8px 0; border-bottom: 1px solid #eeeeee; font-weight: bold; color: #333333;">Email:</td>
+            <td style="padding: 8px 0; border-bottom: 1px solid #eeeeee; color: #666666;"><a href="mailto:${email}" style="color: #666666;">${email}</a></td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-weight: bold; color: #334155;">Source:</td>
-            <td style="padding: 8px 0; border-bottom: 1px solid #f1f5f9; color: #475569;">${source}</td>
+            <td style="padding: 8px 0; border-bottom: 1px solid #eeeeee; font-weight: bold; color: #333333;">Source:</td>
+            <td style="padding: 8px 0; border-bottom: 1px solid #eeeeee; color: #666666;">${source}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 0; border-bottom: 1px solid #eeeeee; font-weight: bold; color: #333333;">Request Type:</td>
+            <td style="padding: 8px 0; border-bottom: 1px solid #eeeeee; color: #666666;">${requestType || 'Other'}</td>
           </tr>
         </table>
 
-        <div style="background-color: #f8fafc; padding: 15px; border-radius: 6px; border-left: 4px solid #4f46e5; margin-top: 10px;">
-          <p style="margin: 0; font-weight: bold; color: #334155; margin-bottom: 8px;">Message:</p>
-          <p style="margin: 0; color: #475569; white-space: pre-wrap;">${message}</p>
+        <div style="background-color: #f5f5f5; padding: 15px; border-radius: 6px; border-left: 4px solid #cccccc; margin-top: 10px;">
+          <p style="margin: 0; font-weight: bold; color: #333333; margin-bottom: 8px;">Message:</p>
+          <p style="margin: 0; color: #666666; white-space: pre-wrap;">${message}</p>
         </div>
       </div>
     `,

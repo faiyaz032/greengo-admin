@@ -104,6 +104,7 @@ exports.Prisma.ContactMessageScalarFieldEnum = {
   email: 'email',
   message: 'message',
   source: 'source',
+  requestType: 'requestType',
   createdAt: 'createdAt'
 };
 
@@ -133,7 +134,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/tarnished/workspace/greengo-admin/src/lib/prisma/generated/admin",
+      "value": "/home/faiyaz/workspace/greengo-admin/src/lib/prisma/generated/admin",
       "fromEnvVar": null
     },
     "config": {
@@ -147,12 +148,11 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/tarnished/workspace/greengo-admin/prisma/admin.prisma",
+    "sourceFilePath": "/home/faiyaz/workspace/greengo-admin/prisma/admin.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../../../../prisma",
   "clientVersion": "6.19.3",
@@ -170,13 +170,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/lib/prisma/generated/admin\"\n}\n\ndatasource db {\n  provider = \"mongodb\"\n  url      = env(\"ADMIN_DB_URL\")\n}\n\nmodel AdminUserView {\n  id               String   @id @default(auto()) @map(\"_id\") @db.ObjectId\n  email            String   @unique\n  lastSyncedAt     DateTime @default(now())\n  earliestJoinedAt DateTime @default(now())\n\n  squareDonationsUsers   Json\n  quotePluginUsers       Json\n  wishlistFlowUsers      Json\n  summary                Json\n  mailerLiteSyncedGroups String[]\n\n  @@map(\"admin_user_view\")\n}\n\nmodel ContactMessage {\n  id        String   @id @default(auto()) @map(\"_id\") @db.ObjectId\n  name      String\n  email     String\n  message   String\n  source    String // e.g. \"quoteplugin\", \"wishlist\", etc.\n  createdAt DateTime @default(now())\n\n  @@map(\"contact_messages\")\n}\n",
-  "inlineSchemaHash": "0e4cf60fb199fd5542e3a21efee11a28f4ddadcf22b55687d065fac95aa052c4",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/lib/prisma/generated/admin\"\n}\n\ndatasource db {\n  provider = \"mongodb\"\n  url      = env(\"ADMIN_DB_URL\")\n}\n\nmodel AdminUserView {\n  id               String   @id @default(auto()) @map(\"_id\") @db.ObjectId\n  email            String   @unique\n  lastSyncedAt     DateTime @default(now())\n  earliestJoinedAt DateTime @default(now())\n\n  squareDonationsUsers   Json\n  quotePluginUsers       Json\n  wishlistFlowUsers      Json\n  summary                Json\n  mailerLiteSyncedGroups String[]\n\n  @@map(\"admin_user_view\")\n}\n\nmodel ContactMessage {\n  id          String   @id @default(auto()) @map(\"_id\") @db.ObjectId\n  name        String\n  email       String\n  message     String\n  source      String // e.g. \"quoteplugin\", \"wishlist\", etc.\n  requestType String? // e.g. \"Installation Help\", \"Billing & Refunds\", etc.\n  createdAt   DateTime @default(now())\n\n  @@map(\"contact_messages\")\n}\n",
+  "inlineSchemaHash": "005222d57e88ea6817922a6b34b10afb2eb1ee8123612c76947c0494a2425a2e",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"AdminUserView\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"_id\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lastSyncedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"earliestJoinedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"squareDonationsUsers\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"quotePluginUsers\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"wishlistFlowUsers\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"summary\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"mailerLiteSyncedGroups\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":\"admin_user_view\"},\"ContactMessage\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"_id\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"source\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"contact_messages\"}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"AdminUserView\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"_id\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"lastSyncedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"earliestJoinedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"squareDonationsUsers\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"quotePluginUsers\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"wishlistFlowUsers\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"summary\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"mailerLiteSyncedGroups\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":\"admin_user_view\"},\"ContactMessage\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"_id\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"source\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"requestType\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"contact_messages\"}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),
