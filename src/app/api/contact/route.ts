@@ -30,7 +30,13 @@ export async function POST(request: Request) {
     if (!source || typeof source !== 'string' || !source.trim()) {
       return NextResponse.json({ error: 'Source is required' }, { status: 400 });
     }
-    if (requestType !== undefined && requestType !== null && requestType !== '' && !REQUEST_TYPES.includes(requestType)) {
+    // Case-insensitive match against the allowed types
+    const matchedRequestType =
+      typeof requestType === 'string'
+        ? REQUEST_TYPES.find((t) => t.toLowerCase() === requestType.trim().toLowerCase())
+        : undefined;
+
+    if (requestType !== undefined && requestType !== null && requestType !== '' && !matchedRequestType) {
       return NextResponse.json({ error: 'Invalid request type' }, { status: 400 });
     }
 
@@ -38,7 +44,7 @@ export async function POST(request: Request) {
     const trimmedEmail = email.trim().toLowerCase();
     const trimmedMessage = message.trim();
     const trimmedSource = source.trim();
-    const resolvedRequestType = REQUEST_TYPES.includes(requestType) ? requestType : 'Other';
+    const resolvedRequestType = matchedRequestType || 'Other';
 
     // 1. Save to Database
     const savedMessage = await prismaAdmin.contactMessage.create({
