@@ -18,12 +18,23 @@ interface SendContactMailParams {
   requestType?: string;
 }
 
+function getFromEmail(source: string): string {
+  const normalizedSource = source.toLowerCase();
+  if (normalizedSource.includes('quote')) {
+    return 'no-reply@quoteplugin.com';
+  }
+  if (normalizedSource.includes('wishlist')) {
+    return 'noreply@wishlistflow.com';
+  }
+  return process.env.FROM_EMAIL || 'noreply@wishlistflow.com';
+}
+
 export async function sendContactEmail({ name, email, message, source, requestType }: SendContactMailParams) {
-  const fromEmail = process.env.FROM_EMAIL || 'noreply@wishlistflow.com';
+  const fromEmail = getFromEmail(source);
   const toEmail = 'waqas@sqspstarter.com';
 
   const mailOptions = {
-    from: `"SQSP Support Ticket" <${fromEmail}>`,
+    from: `"SQSPStarter Support Ticket" <${fromEmail}>`,
     to: toEmail,
     replyTo: email,
     subject: `New Support Ticket${requestType ? ` [${requestType}]` : ''} from [${source}]`,
